@@ -26,6 +26,7 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 ## 📂 Creating and Managing Files/Directories
 - `touch` — Create a file  
 - `mkdir` — Create a directory  
+  - `mkdir -p` — Create parent directories as needed
 - `cp` — Copy a file or directory  
   - `cp -r` — Recursively copy directories  
 - `mv` — Move or rename a file/directory  
@@ -48,6 +49,40 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 - `diff` — Compare content of two files
     - `diff -r`: The `-r` option tells `diff`difff to recursively compare subdirectories as well.
 
+## 🔐 File Permissions
+- `ls -l example.txt` — Display detailed info about a file  
+    - Example: `-rw-rw-r-- 1 root root 0 Jul 29 15:11 example.txt`  
+        - `-rw-rw-r--`:  
+            - `-` — Regular file (`d` for directory, `l` for symlink)  
+            - `rw-` — Owner can read & write  
+            - `rw-` — Group can read & write  
+            - `r--` — Others can only read  
+        - `root` — File owner  
+        - `root` — File group  
+        - `0` — File size in bytes  
+        - `Jul 29 15:11` — Last modified time  
+        - `example.txt` — File name
+
+- `sudo chown root:root example.txt` — Change file owner and group  
+    - `sudo` — Run with superuser privileges  
+    - `chown` — Command to change ownership  
+    - `root:root` — New owner:group  
+    - `example.txt` — Target file  
+
+- `sudo chmod 700 example.txt` — Set file permissions  
+    - `7` — Owner: read (4) + write (2) + execute (1) = `rwx`  
+    - `0` — Group: no permission = `---`  
+    - `0` — Others: no permission = `---`  
+    - Final: `rwx------`
+
+- `ls -ld ~/test-dir` — Show permission info for a directory  
+    - Example: `drwx------ 2 labex labex 4096 Jul 29 15:45 /home/labex/test-dir`  
+        - `d` — Indicates a directory  
+        - `rwx------` — Owner can read/write/execute; group and others have no access  
+            - `Read (r)` — Allows listing contents  
+            - `Write (w)` — Allows creating/deleting files  
+            - `Execute (x)` — Allows entering the directory (`cd`)
+
 ---
 
 ## 📦 Package Management
@@ -59,3 +94,4 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 
 - Files starting with `.` are hidden  
   Example: `.zshrc`, `.bash_profile`cd 
+
