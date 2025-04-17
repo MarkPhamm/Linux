@@ -49,6 +49,8 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 - `diff` — Compare content of two files
     - `diff -r`: The `-r` option tells `diff`difff to recursively compare subdirectories as well.
 
+---
+
 ## 🔐 File Permissions
 - `ls -l example.txt` — Display detailed info about a file  
     - Example: `-rw-rw-r-- 1 root root 0 Jul 29 15:11 example.txt`  
@@ -82,6 +84,74 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
             - `Read (r)` — Allows listing contents  
             - `Write (w)` — Allows creating/deleting files  
             - `Execute (x)` — Allows entering the directory (`cd`)
+---
+
+## 🧑‍💻 User Account Management
+
+- **Creating a New User**  
+    - `sudo useradd joker`  
+        - `sudo` — Grants superuser privileges  
+        - `useradd` — Command to create a new user  
+        - `joker` — The username being created  
+
+    - `sudo grep -w 'joker' /etc/passwd`  
+        - Example output: `joker:x:5001:5001::/home/joker:/bin/sh`  
+            - `Username:` joker  
+            - `Password:` x (actual password is stored securely in `/etc/shadow`)  
+            - `User ID:` 5001  
+            - `Group ID:` 5001  
+            - `Home Directory:` /home/joker (not created yet)  
+            - `Default Shell:` /bin/sh
+
+- **Creating a User with a Home Directory**  
+    - Add the `-m` flag to create the home directory:  
+        - `sudo useradd -m bob`  
+    - Check directory: `sudo ls -ld /home/bob`  
+        - Example output: `drwxr-x--- 2 bob bob 57 Jan 19 13:33 /home/bob`  
+            - `d` — Indicates it's a directory  
+            - `rwxr-x---` — Permissions (owner: rwx, group: r-x, others: ---)  
+            - `bob bob` — User and group ownership  
+            - `57` — Directory size in bytes  
+            - `Jan 19 13:33` — Creation date/time  
+            - `/home/bob` — Path to the home directory
+
+- **Setting a User Password**  
+    - `sudo passwd joker`  
+        - Sets or changes the user’s password  
+        - Passwords are securely stored in `/etc/shadow`
+
+- **Modifying User Properties**  
+    - `sudo usermod -d /home/wayne joker`  
+        - `usermod` — Modify user account settings  
+        - `-d /home/wayne` — New home directory path  
+        - `joker` — Target user
+
+- **Changing User Shell**  
+    - Default shell might be `/bin/sh`, but `/bin/bash` is often preferred for features  
+    - `sudo usermod -s /bin/bash joker` — Set bash as default shell  
+    - Verify with: `sudo grep -w 'joker' /etc/passwd`
+
+- **Adding a User to a Group**  
+    - `sudo usermod -aG sudo joker`  
+        - `usermod` — Modify user account  
+        - `-aG` — Append user to a group  
+        - `sudo` — Target group  
+        - `joker` — Target user  
+
+    - Validate:  
+        - `groups joker` — Show group memberships  
+        - `su - joker` — Switch to joker's shell  
+        - `exit` — Return to previous user
+
+- **Locking and Unlocking User Accounts**  
+    - `sudo passwd -l joker` — Lock user account  
+    - `sudo passwd -u joker` — Unlock user account
+
+- **Deleting a User**  
+    - `sudo userdel -r bob` — Delete user and home directory  
+    - Verify:  
+        - `sudo grep -w 'bob' /etc/passwd`  
+        - `sudo ls -ld /home/bob`
 
 ---
 
