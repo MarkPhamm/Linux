@@ -165,3 +165,39 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 - Files starting with `.` are hidden  
   Example: `.zshrc`, `.bash_profile`cd 
 
+---
+
+## 🧵 Wildcards and Ranges
+
+- **List all `.txt` files**  
+  ```bash
+  ls *.txt
+  ```
+  - `*` matches any characters — `*.txt` lists all `.txt` files
+
+- **Create multiple files with a range**  
+  ```bash
+  touch note_{1..5}.txt
+  ```
+  - Creates `note_1.txt` to `note_5.txt`
+
+- **List files starting with "note"**  
+  ```bash
+  ls note*
+  ```
+
+- **Wildcard Summary**
+  - `*` — Matches any number of characters  
+  - `?` — Matches any single character  
+  - `[abc]` — Matches one character in the set
+
+---
+
+## 📚 Linux Command Info
+
+- `type <command>` — Check if built-in or external  
+- `<command> --help` — Quick summary  
+- `man <command>` — Detailed manual  
+- `apropos <keyword>` — Search commands by keyword
+
+--- 
