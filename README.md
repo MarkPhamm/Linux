@@ -265,3 +265,50 @@ Sure! Here’s the **updated version** with all your requested additions while k
 - `apropos <keyword>` — Search commands by keyword
 
 --- 
+
+Here’s your **README for File and Directory Operations** styled to match the user management section:
+
+---
+
+## 🗂️ File and Directory Operations
+
+- `tree /` — Displays a **tree view** of the entire filesystem starting from root (`/`)  
+- `tree nested` — Displays a tree view of the `nested` directory  
+
+- `ls /home` — Lists contents of the `/home` directory  
+- `ls /etc` — Lists contents of the `/etc` directory  
+- `ls /bin` — Lists contents of the `/bin` directory  
+
+---
+
+### **Navigating Directories**
+
+- `cd /` — Change to the **root directory** (`/`)  
+- `ls -l` — List files in **long format** (permissions, ownership, size, date)  
+
+- `cd ~` or `cd` — Change to your **home directory** (`/home/username`)  
+- `cd ..` — Move **up one level** in the directory hierarchy  
+- `cd -` — Switch to the **previous directory**
+
+---
+
+### **Finding Files and Directories**
+- `find . -name "*.txt"`  
+    - Search for all `.txt` files in the **current directory** and subdirectories  
+
+- `sudo find / -name "passed"`  
+    - Search for files/directories named `passed` starting from the **root directory (`/`)**  
+    - `sudo` is required for full system access
+
+- `find ~ -size +1M`  
+    - Find files **larger than 1MB** in the **home directory**
+
+- `find ~ -mtime -<n>`  
+    - Find files **modified within the last `<n>` days** in the **home directory**  
+    - Example:  
+    ```bash
+    find ~ -mtime -7  # Files modified in the last 7 days
+    ```
+
+---
+
