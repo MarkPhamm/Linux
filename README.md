@@ -3,15 +3,6 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 
 ---
 
-## 🧑‍💻 User & Permissions
-- `whoami` — Display the current user  
-- `id` — Display user and group information  
-  Example output:  
-  `uid=1000(labex) gid=1000(labex) groups=1000(labex),4(adm),27(sudo)...`  
-- `sudo` — Superuser do (run commands as another user, default is root)
-
----
-
 ## 📁 Navigating the File System
 - `pwd` — Show current working directory  
 - `cd` — Change directory  
@@ -85,13 +76,26 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
             - `Write (w)` — Allows creating/deleting files  
             - `Execute (x)` — Allows entering the directory (`cd`)
 ---
+Sure! Here’s the **updated version** with all your requested additions while keeping the original structure intact:
+
+---
 
 ## 🧑‍💻 User Account Management
 
-- **Creating a New User**  
+- `whoami` — Display the current user  
+- `id` — Display user and group information  
+  Example output:  
+  `uid=1000(labex) gid=1000(labex) groups=1000(labex),4(adm),27(sudo)...`  
+- `sudo` — Superuser do (run commands as another user, default is root)
+
+---
+
+### **Creating a New User**
+
+- **Using `useradd` (non-interactive)**  
     - `sudo useradd joker`  
         - `sudo` — Grants superuser privileges  
-        - `useradd` — Command to create a new user  
+        - `useradd` — Command to create a new user (low-level)  
         - `joker` — The username being created  
 
     - `sudo grep -w 'joker' /etc/passwd`  
@@ -115,43 +119,103 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
             - `Jan 19 13:33` — Creation date/time  
             - `/home/bob` — Path to the home directory
 
-- **Setting a User Password**  
-    - `sudo passwd joker`  
-        - Sets or changes the user’s password  
-        - Passwords are securely stored in `/etc/shadow`
+- **Using `adduser` (interactive)**  
+    - `sudo adduser jack`  
+        - Prompts for password, full name, room number, etc.  
+        - Automatically creates home directory and copies default config files (`/etc/skel`)  
+    - Check user:  
+        - `sudo grep -w 'jack' /etc/passwd`  
 
-- **Modifying User Properties**  
+---
+
+### **Comparing `useradd` vs `adduser`**
+
+| Command      | Type               | Home Dir Created? | Interactive? | Copies `/etc/skel`? |
+|--------------|--------------------|-------------------|--------------|---------------------|
+| `useradd`    | Low-level binary   | No (use `-m`)     | No           | No                  |
+| `adduser`    | High-level script  | Yes               | Yes          | Yes                 |
+
+- `useradd` is available on all Linux distros (minimal setup).
+- `adduser` is available on Debian/Ubuntu-based distros (easier to use).
+
+---
+
+### **Setting a User Password**
+
+- `sudo passwd joker`  
+    - Sets or changes the user’s password  
+    - Passwords are securely stored in `/etc/shadow`
+
+---
+
+### **Modifying User Properties**
+
+- Change home directory:  
     - `sudo usermod -d /home/wayne joker`  
-        - `usermod` — Modify user account settings  
-        - `-d /home/wayne` — New home directory path  
-        - `joker` — Target user
 
-- **Changing User Shell**  
-    - Default shell might be `/bin/sh`, but `/bin/bash` is often preferred for features  
-    - `sudo usermod -s /bin/bash joker` — Set bash as default shell  
-    - Verify with: `sudo grep -w 'joker' /etc/passwd`
+- Change shell:  
+    - `sudo usermod -s /bin/bash joker`  
+    - Verify: `sudo grep -w 'joker' /etc/passwd`
 
-- **Adding a User to a Group**  
-    - `sudo usermod -aG sudo joker`  
-        - `usermod` — Modify user account  
-        - `-aG` — Append user to a group  
-        - `sudo` — Target group  
-        - `joker` — Target user  
+---
 
-    - Validate:  
-        - `groups joker` — Show group memberships  
-        - `su - joker` — Switch to joker's shell  
-        - `exit` — Return to previous user
+### **Adding a User to a Group**
 
-- **Locking and Unlocking User Accounts**  
-    - `sudo passwd -l joker` — Lock user account  
-    - `sudo passwd -u joker` — Unlock user account
+- `sudo usermod -aG sudo joker`  
+    - `usermod` — Modify user account  
+    - `-aG` — Append user to a group  
+    - `sudo` — Target group  
+    - `joker` — Target user  
 
-- **Deleting a User**  
-    - `sudo userdel -r bob` — Delete user and home directory  
-    - Verify:  
-        - `sudo grep -w 'bob' /etc/passwd`  
-        - `sudo ls -ld /home/bob`
+- Example:  
+    - `sudo usermod -aG sudo jack`  
+
+- Validate:  
+    - `groups joker`  
+    - `groups jack`  
+    - `su - joker` — Switch to joker's shell  
+    - `exit` — Return to previous user
+
+---
+
+### **Group Management**
+
+- **View all groups (sorted)**:  
+    - `cat /etc/group | sort`  
+
+- **Search for specific group/user**:  
+    - `cat /etc/group | grep -E "labex"`  
+
+- **Create a new group**:  
+    - `sudo groupadd developers`  
+
+- **Add user to a group**:  
+    - `sudo usermod -aG developers joker`  
+
+- **Check group membership**:  
+    - `groups joker`  
+    - `groups jack`  
+
+---
+
+### **Locking and Unlocking User Accounts**
+
+- Lock user account:  
+    - `sudo passwd -l joker`  
+
+- Unlock user account:  
+    - `sudo passwd -u joker`  
+
+---
+
+### **Deleting a User**
+
+- Delete user and home directory:  
+    - `sudo userdel -r bob`  
+
+- Verify deletion:  
+    - `sudo grep -w 'bob' /etc/passwd`  
+    - `sudo ls -ld /home/bob`  
 
 ---
 
