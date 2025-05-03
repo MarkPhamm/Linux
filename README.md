@@ -312,3 +312,66 @@ Here’s your **README for File and Directory Operations** styled to match the u
 
 ---
 
+## 🔐 Environment Variables
+
+### **Shell Variables vs Environment Variables**
+
+* Shell variables are **local** to the shell session
+* Environment variables are **exported** to **child processes**
+* `$` — Used to **access** variable values
+* `env` — View all **environment variables**
+* `echo $PATH` — Shows the **PATH** variable: directories (colon `:` separated) where the shell looks for commands
+* `export` — Makes a shell variable an **environment variable**
+
+  * Example:
+
+  ```bash
+  export MY_ENV_VAR="Hello World"
+  ```
+* `env | grep MY_ENV_VAR` — **Filter** and confirm variable is set
+* Environment variables defined in **startup files** like `.zshrc` are applied to **new sessions**
+
+---
+
+### **Modifying the PATH Variable**
+
+* Add a directory to PATH to make scripts/executables available globally
+
+  ```bash
+  export PATH="$PATH:$HOME/my_scripts"
+  ```
+* This allows running any script in `my_scripts` from **any directory**
+* Order matters: the shell checks directories in **sequence**
+
+---
+
+### **Making Environment Variables Permanent**
+
+* Open your shell startup file:
+
+  ```bash
+  nano ~/.zshrc
+  ```
+* Add lines:
+
+  ```bash
+  export MY_ENV_VAR="This is an environment variable"
+  export PATH="$PATH:$HOME/my_scripts"
+  ```
+* Apply changes:
+
+  ```bash
+  source ~/.zshrc
+  ```
+
+---
+
+### **Removing Environment Variables**
+
+* Use `unset` to remove a variable from the current session:
+
+  ```bash
+  unset MY_ENV_VAR
+  ```
+
+---
