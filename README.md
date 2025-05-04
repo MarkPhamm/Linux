@@ -1,10 +1,12 @@
 # 🐧 Learning Linux Commands  
 Learning Linux commands so I can do some actual engineering – one terminal at a time.
-
+![image](https://github.com/user-attachments/assets/e808416f-a5ac-4408-8abd-44a0d6bccd4c)
 ---
 
 ## 📁 Navigating the File System
-- `pwd` — Show current working directory  
+- `pwd` — Show the current working directory
+  - `pwd -L` — Prints the logical current working directory, including any symbolic links (default behavior)
+  - `pwd -P` — Prints the physical directory, with all symbolic links resolved
 - `cd` — Change directory  
 - `ls` — List directory contents  
   - `ls -a` — Show hidden files  
