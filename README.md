@@ -23,8 +23,18 @@ Here’s the updated explanation with `-v` and `-m` options added:
   * `mkdir -p` — Create parent directories as needed
   * `mkdir -v` — Print a message for each directory created (verbose mode)
   * `mkdir -m MODE` — Set file mode (permissions) for the created directory (e.g., `-m 755`)
-- `cp` — Copy a file or directory  
-  - `cp -r` — Recursively copy directories  
+* `cp` — Copy a file or directory
+  * `cp file.txt dir/` — Copy a single file to a directory
+  * `cp file1.txt file2.txt dir/` — Copy multiple files to a directory
+  * `cp -i` — Prompt before overwriting (interactive mode)
+  * `cp -r` — Recursively copy directories
+  * `cp -p` — Preserve file attributes (timestamps, mode, ownership)
+  * `cp -u` — Copy only if the source is newer than the destination or if the destination is missing
+  * `cp -v` — Verbose mode; print what is being copied
+  * `cp -n` — No clobber; do not overwrite existing files
+  * `cp -l` — Create hard links instead of copying
+  * `cp -s` — Create symbolic links instead of copying
+  * `cp *.txt dir/` — Use wildcards to copy selected files
 - `mv` — Move or rename a file/directory  
 - `rm` — Remove a file  
   - `rm -i` — Prompt before every removal  
