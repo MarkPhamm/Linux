@@ -18,8 +18,11 @@ Learning Linux commands so I can do some actual engineering – one terminal at 
 
 ## 📂 Creating and Managing Files/Directories
 - `touch` — Create a file  
-- `mkdir` — Create a directory  
-  - `mkdir -p` — Create parent directories as needed
+Here’s the updated explanation with `-v` and `-m` options added:
+* `mkdir` — Create a directory
+  * `mkdir -p` — Create parent directories as needed
+  * `mkdir -v` — Print a message for each directory created (verbose mode)
+  * `mkdir -m MODE` — Set file mode (permissions) for the created directory (e.g., `-m 755`)
 - `cp` — Copy a file or directory  
   - `cp -r` — Recursively copy directories  
 - `mv` — Move or rename a file/directory  
