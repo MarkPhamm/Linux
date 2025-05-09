@@ -40,9 +40,13 @@ Here’s the updated explanation with `-v` and `-m` options added:
   * `mv -f` — Force move without prompting for confirmation
   * `mv -n` — Do not overwrite an existing file
   * `mv -v` — Verbose mode, explain what is being done
-- `rm` — Remove a file  
-  - `rm -i` — Prompt before every removal  
-  - `rm -f` — Force removal without prompt  
+* `rm` — Remove a file
+  * `rm filename` — Remove a single file
+  * `rm file1 file2 file3` — Remove multiple files
+  * `rm -r directory` — Recursively remove a directory and its contents
+  * `rm -i filename` — Interactive removal; prompts for confirmation before deleting
+  * `rm -f` — Force removal without prompting
+  * `rm -v` — Verbose mode, explain what is being done
 - `rmdir` — Remove empty directories
 
 ---
