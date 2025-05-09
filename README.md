@@ -35,7 +35,11 @@ Here’s the updated explanation with `-v` and `-m` options added:
   * `cp -l` — Create hard links instead of copying
   * `cp -s` — Create symbolic links instead of copying
   * `cp *.txt dir/` — Use wildcards to copy selected files
-- `mv` — Move or rename a file/directory  
+* `mv` — Move or rename a file/directory
+  * `mv -i` — Prompt before overwriting an existing file (interactive mode, safer)
+  * `mv -f` — Force move without prompting for confirmation
+  * `mv -n` — Do not overwrite an existing file
+  * `mv -v` — Verbose mode, explain what is being done
 - `rm` — Remove a file  
   - `rm -i` — Prompt before every removal  
   - `rm -f` — Force removal without prompt  
