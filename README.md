@@ -99,9 +99,6 @@ Here’s the updated explanation with `-v` and `-m` options added:
             - `Write (w)` — Allows creating/deleting files  
             - `Execute (x)` — Allows entering the directory (`cd`)
 ---
-Sure! Here’s the **updated version** with all your requested additions while keeping the original structure intact:
-
----
 
 ## 🧑‍💻 User Account Management
 
